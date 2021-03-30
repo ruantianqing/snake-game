@@ -1,30 +1,28 @@
 function Snake(img) {
-    // 存储坐标
+    // 存储坐标，蛇的初始坐标
     this.arr = [
         { x: 6, y: 4 },
         { x: 5, y: 4 },
-        { x: 4, y: 4 },
-        // { x: 3, y: 4 },
-        // { x: 2, y: 4 }
+        { x: 4, y: 4 }
     ];
-    // 存储图片
+    // 存储图片，蛇的头部，身体，尾部图片
     this.img = img;
     // this.headImage = img.head;
     // this.bodyImage = img.body;
     // this.tailImage = img.tail;
     // 方向  键值左37 上38 右39 下40
     // 根据方向确定头部图片(direction - 37)就是数组中图片的序号
-    this.direction = 39;
-    this.headImage = this.img.head[this.direction - 37];
-    this.bodyImage = this.img.body;
-    this.tailImage = this.img.tail[this.direction - 37];
+    this.direction = 39;    // 默认方向是39向右
+    this.headImage = this.img.head[this.direction - 37];    // 取头朝向右的那一张图片
+    this.bodyImage = this.img.body;     // 身体不分方向，只有一张
+    this.tailImage = this.img.tail[this.direction - 37];    // 取尾部向左的那一张图片
     // 是否可以改变方向
     this.lock = false;
 }
 
 // 让蛇移动
 Snake.prototype.move = function() {
-    // 创建一个新的头部对象
+    // 创建一个新的头部对象，初始值为初始的头部坐标
     var item = { x: this.arr[0].x, y:this.arr[0].y };
     // 判断方向
     switch (this.direction) {
@@ -52,12 +50,12 @@ Snake.prototype.move = function() {
     // 删除尾部
     this.arr.pop();
 
-    // 确定尾部图片的方向
+    // 确定尾部图片的方向，尾部的方向和倒数第二个的方向相同
     // 倒数第二个成员
     var second = this.arr[this.arr.length - 2];
     // 尾部是倒数最后一个成员
     var tail = this.arr[this.arr.length - 1];
-    // 如果x相同
+    // 如果x相同，说明是垂直移动的
     if (tail.x === second.x) {
         // 在垂直方向上比较y值
         if (second.y > tail.y) {

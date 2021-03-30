@@ -1,3 +1,4 @@
+// x,y是食物的坐标
 function Food(y, x, img) {
     this.x = x;
     this.y = y;

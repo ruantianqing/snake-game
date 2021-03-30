@@ -40,7 +40,7 @@ Game.prototype.renderfood = function() {
 }
 // 渲染障碍物
 Game.prototype.renderBlock = function() {
-    // 遍历障碍物成员，将其一一绘制
+    // 遍历障碍物成员，将其一一绘制，arr是障碍物的坐标数组，数组成员是坐标对象，有x,y坐标的key
     for (var i = 0, len = this.block.arr.length; i < len; i++) {
         this.map.arr[this.block.arr[i].y][this.block.arr[i].x].style.backgroundImage = 'url(' + this.block.img + ')';
     }
@@ -48,8 +48,8 @@ Game.prototype.renderBlock = function() {
 // 渲染蛇
 Game.prototype.renderSnake = function() {
     // 特殊绘制头和尾
-    var head = this.snake.arr[0];
-    var tail = this.snake.arr[this.snake.arr.length - 1];
+    var head = this.snake.arr[0];   // 取蛇头部的坐标
+    var tail = this.snake.arr[this.snake.arr.length - 1];   // 取蛇尾部的坐标
     // 绘制头
     this.map.arr[head.y][head.x].style.backgroundImage = 'url(' + this.snake.headImage + ')';
     // 绘制身体:从第二张绘制到倒数第二张
